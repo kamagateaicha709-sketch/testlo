@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pour Toi, Mon Amour</title>
+    <style>
+        :root {
+            --rose-profond: #8B4E6F;
+            --rose-doux: #D4A5B8;
+            --creme: #FFF8F3;
+            --or: #C9A96E;
+            --text-dark: #2C1A1F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--creme) 0%, #FFE8E8 100%);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animation des coeurs flottants */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-30px) rotate(10deg); opacity: 0.6; }
+        }
+
+        .hearts-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .heart-float {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.2;
+        }
+
+        .heart-float:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+        .heart-float:nth-child(2) { left: 80%; top: 40%; animation-delay: 2s; }
+        .heart-float:nth-child(3) { left: 50%; top: 60%; animation-delay: 4s; }
+        .heart-float:nth-child(4) { left: 20%; top: 80%; animation-delay: 1s; }
+        .heart-float:nth-child(5) { left: 70%; top: 15%; animation-delay: 3s; }
+        .heart-float:nth-child(6) { left: 30%; top: 50%; animation-delay: 5s; }
+
+        /* Container principal */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* En-tête romantique */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 300;
+            color: var(--rose-profond);
+            margin-bottom: 20px;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--or);
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+
+        /* Section message principal */
+        .love-message {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(139, 78, 111, 0.15);
+            margin-bottom: 60px;
+            animation: fadeInUp 1.5s ease-out 0.3s both;
+            border: 2px solid rgba(201, 169, 110, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .love-message p {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            text-align: justify;
+            text-indent: 30px;
+        }
+
+        .love-message p:first-letter {
+            font-size: 3rem;
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--rose-profond);
+            float: left;
+            line-height: 1;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        /* Galerie d'images romantiques */
+        .gallery {
+            display: grid;
+           
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .photo-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(139, 78, 111, 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            animation: fadeInUp 1.5s ease-out both;
+            background: white;
+        }
+
+        .photo-card:nth-child(1) { animation-delay: 0.5s; }
+        .photo-card:nth-child(2) { animation-delay: 0.7s; }
+        .photo-card:nth-child(3) { animation-delay: 0.9s; }
+        .photo-card:nth-child(4) { animation-delay: 1.1s; }
+
+        .photo-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(139, 78, 111, 0.3);
+        }
+
+        .photo-wrapper {
+            width: 380px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--rose-doux), var(--or));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 380px;
+            overflow: hidden;
+        }
+
+        .photo-wrapper img {
+            width: 400px;
+            height: 400px;
+            object-fit: cover;
+            text-align: center;
+            transition: transform 0.4s ease;
+        }
+
+        .photo-card:hover .photo-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .photo-caption {
+            padding: 20px;
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--rose-profond);
+            font-style: italic;
+            background: white;
+        }
+
+        
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .love-message {
+                padding: 30px;
+            }
+
+            .love-message p {
+                font-size: 1rem;
+            }
+
+            .photo-wrapper {
+                height: 250px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Petites étoiles scintillantes */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--or);
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .star:nth-child(odd) { animation-delay: 0s; }
+        .star:nth-child(even) { animation-delay: 1.5s; }
+    </style>
+</head>
+<body>
+    <!-- Étoiles scintillantes -->
+    <div class="stars">
+        <div class="star" style="left: 15%; top: 10%;"></div>
+        <div class="star" style="left: 85%; top: 20%;"></div>
+        <div class="star" style="left: 45%; top: 15%;"></div>
+        <div class="star" style="left: 25%; top: 70%;"></div>
+        <div class="star" style="left: 75%; top: 65%;"></div>
+        <div class="star" style="left: 55%; top: 85%;"></div>
+        <div class="star" style="left: 35%; top: 35%;"></div>
+        <div class="star" style="left: 65%; top: 45%;"></div>
+    </div>
+
+    <!-- Coeurs flottants -->
+    <div class="hearts-background">
+        <div class="heart-float">❤️</div>
+        <div class="heart-float">💕</div>
+        <div class="heart-float">💖</div>
+        <div class="heart-float">❤️</div>
+        <div class="heart-float">💕</div>
+        <div class="heart-float">💖</div>
+    </div>
+
+    <div class="container">
+        <!-- En-tête -->
+        <header>
+            <h1>Pour Toi, Mon Amour</h1>
+            <p class="subtitle">Chaque mot vient du cœur</p>
+        </header>
+
+        <!-- Message principal -->
+        <section class="love-message">
+            <p>
+               Je veux prendre un instant pour te dire merci… Merci pour ta loyauté, 
+               pour ta constance, pour cette manière que tu as d’aimer sans calculer. 
+               Dans un monde où tout change vite, toi tu restes. Tu restes vrai(e), fidèle, sincère.
+            </p>
+            <p>
+               je vais pas trop parler ,Mais tu sais ce que j'attend de toi, je crois au proccessus, 
+               je te fait confiance et tu va signé pour nous mvvv💘💘
+            </p>
+            <p>
+                Je t’aime ❤️ اسماعيل
+            </p>
+           
+        </section>
+
+        <!-- Galerie d'images -->
+        <section class="gallery">
+           
+            <div class="photo-card">
+                <div class="photo-wrapper">
+                    <img src="WhatsApp Image 2026-02-15 at 02.54.55 (1).jpeg" alt="Mains entrelacées">
+                </div>
+                <div class="photo-caption">On est Ensemble My G💕</div>
+            </div>
+
+        </section>
+
+       
+</body>
+</html>
